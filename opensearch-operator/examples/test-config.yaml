@@ -1,0 +1,58 @@
+apiVersion: opensearch.opster.io/v1
+kind: OpenSearchCluster
+metadata:
+  name: secops-cluster
+  namespace: default
+spec:
+  security:
+    config:
+    ## take a look at opensearch-k8s-operator/docs/userguide/main.md (Custom admin user)
+      adminCredentialsSecret:
+        name: admin-credentials-secret
+      securityConfigSecret:
+       name: securityconfig-secret
+    tls:
+       http:
+         generate: true 
+       transport:
+         generate: true
+         perNode: true
+  general:
+    httpPort: 9200
+    serviceName: secops-cluster
+    version: 2.4.0
+    pluginsList: ["https://github.com/aiven/prometheus-exporter-plugin-for-opensearch/releases/download/2.4.0.0/prometheus-exporter-2.4.0.0.zip"]
+    drainDataNodes: true
+  dashboards:
+    tls:
+      enable: true
+      generate: true
+    version: 2.4.0
+    enable: true
+    replicas: 2
+    resources:
+      requests:
+         memory: "1Gi"
+         cpu: "500m"
+      limits:
+         memory: "1Gi"
+         cpu: "500m"
+  confMgmt:
+    smartScaler: true
+  nodePools:
+    - component: masters
+      replicas: 3
+      diskSize: "20Gi"
+      resources:
+         requests:
+            memory: "4Gi"
+            cpu: "1000m"
+         limits:
+            memory: "4Gi"
+            cpu: "1000m"
+      roles:
+        - "master"
+        - "data"
+        - "cluster_manager"
+      persistence:
+         emptyDir: {}
