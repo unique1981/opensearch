@@ -20,14 +20,13 @@ spec:
   general:
     httpPort: 9200
     serviceName: secops-cluster
-    version: 2.4.0
-    pluginsList: ["https://github.com/aiven/prometheus-exporter-plugin-for-opensearch/releases/download/2.4.0.0/prometheus-exporter-2.4.0.0.zip"]
+    version: 2.3.0
     drainDataNodes: true
   dashboards:
     tls:
       enable: true
       generate: true
-    version: 2.4.0
+    version: 2.3.0
     enable: true
     replicas: 2
     resources:
