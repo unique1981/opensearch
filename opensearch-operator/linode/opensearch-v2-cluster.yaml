@@ -19,7 +19,6 @@ spec:
     serviceName: secops-cluster
     version: 2.4.0
     drainDataNodes: true
-    pluginsList: ["repository-s3","security-analytics","notifications"]
   dashboards:
     service:
       type: LoadBalancer
