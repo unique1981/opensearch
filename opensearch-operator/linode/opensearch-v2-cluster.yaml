@@ -20,15 +20,14 @@ spec:
     version: 2.4.0
     drainDataNodes: true
   dashboards:
+    service:
+      type: LoadBalancer
     tls:
       enable: true
       generate: true
     version: 2.4.0
     enable: true
     replicas: 1
-    service:
-      type: "LoadBalancer"
-      loadBalancerSourceRanges: "10.0.0.0/24, 192.168.0.0/24"
     resources:
       requests:
          memory: "1Gi"
