@@ -17,22 +17,22 @@ spec:
   general:
     httpPort: 9200
     serviceName: secops-cluster
-    version: 2.3.0
+    version: 2.4.0
     drainDataNodes: true
   dashboards:
     tls:
       enable: true
       generate: true
-    version: 2.3.0
+    version: 2.4.0
     enable: true
     replicas: 1
     resources:
       requests:
-         memory: "512Mi"
-         cpu: "200m"
+         memory: "1Gi"
+         cpu: "500m"
       limits:
-         memory: "512Mi"
-         cpu: "200m"
+         memory: "1Gi"
+         cpu: "500m"
   nodePools:
     - component: masters
       replicas: 3
