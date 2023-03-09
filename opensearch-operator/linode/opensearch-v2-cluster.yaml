@@ -3,8 +3,8 @@
 apiVersion: opensearch.opster.io/v1
 kind: OpenSearchCluster
 metadata:
-  name: my-first-cluster
-  namespace: default
+  name: secops-cluster
+  namespace: opensearch
 spec:
   security:
     config:
@@ -16,9 +16,8 @@ spec:
          perNode: true
   general:
     httpPort: 9200
-    serviceName: my-first-cluster
+    serviceName: secops-cluster
     version: 2.3.0
-    pluginsList: ["repository-s3"]
     drainDataNodes: true
   dashboards:
     tls:
